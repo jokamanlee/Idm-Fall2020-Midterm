@@ -1,0 +1,18 @@
+Concept:
+
+    API's:
+
+    Studio Ghibli: https://ghibliapi.herokuapp.com/#
+
+    giphy: https://developers.giphy.com/docs/api/#quick-start-guide
+
+2> Figure out how to display this thesis/idea
+
+-What do we want to say? What is our angle?
+
+Display a ghibli movie and its basic information with a nice gif from the movie 
+
+Having a nav bar or a way for users to choose a certain movie 
+the gif will pop up on one side and next to it would be the basic information of the movie
+
+
