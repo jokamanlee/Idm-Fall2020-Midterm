@@ -87,11 +87,11 @@ const DataLinks = [
   {
     id: "17",
     title: "The Wind Rises",
-    link: "l378z4WZw2vENMGx",
+    link: "l378z4WZw2vENMGxa",
   },
   {
     id: "18",
-    title: "THe Tale of the Princess Kaguya",
+    title: "The Tale of the Princess Kaguya",
     link: "oktW1eBGpHOoM",
   },
   {

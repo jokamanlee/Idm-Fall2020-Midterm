@@ -69,6 +69,18 @@ function Films() {
     };
   }, [filmsData]);
 
+  const { noGifAvalible } = useMemo(() => {
+    let noGifAvalible = "";
+
+    if (titleid.id === "9" || titleid.id === "18") {
+      noGifAvalible = "*Not this film's related gif";
+    }
+
+    return {
+      noGifAvalible,
+    };
+  }, [titleid]);
+  console.log(noGifAvalible);
   const { gifImage } = useMemo(() => {
     let gifImage = "";
 
@@ -91,6 +103,7 @@ function Films() {
             {title}-{yearOfRelease}
           </h1>
           <img src={gifImage} />
+          <div className="gif">{noGifAvalible}</div>
         </div>
         <div className="filmInfo">
           <h2>Director: {director}</h2>
