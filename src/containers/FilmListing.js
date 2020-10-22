@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import Header from "../components/Header";
 
 import FilmNames from "../components/FilmNames";
-
-const gifKey = `ud0TA4TXBTiRM4P5aqjg7g9tj8oPMder`;
 
 function FilmListing() {
   const [isLoading, setLoading] = useState(true);

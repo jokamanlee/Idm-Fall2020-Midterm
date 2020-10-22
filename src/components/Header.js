@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <header>
-      <h1>STUDIO GHIBLI</h1>
-      <nav>
-        <a href="#">Spirited Away</a>
-      </nav>
+      <h1>
+        <Link className="homePage" to="/">
+          STUDIO GHIBLI
+        </Link>
+      </h1>
     </header>
   );
 }

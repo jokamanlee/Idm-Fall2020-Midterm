@@ -7,36 +7,67 @@ import Header from "../components/Header";
 
 import DataOffsets from "../components/DataLinks";
 
-import FilmListing from "./FilmListing";
-import { filmsData } from "./FilmListing";
-
-const gifKey = `ud0TA4TXBTiRM4P5aqjg7g9tj8oPMder`;
+const API_KEY_GIF = process.env.REACT_APP_API_KEY;
 
 function Films() {
   const [isLoading, setLoading] = useState(true);
   const [gifData, setGifData] = useState(null);
+  const [filmsData, setfilmData] = useState();
 
   let { title } = useParams();
 
   const titlelink = DataOffsets.find((film) => film.title === title);
-
-  const filmTitle = `${title} Ghibli `;
+  const titleid = DataOffsets.find((film) => film.title === title);
 
   useEffect(() => {
     axios
       .get(
-        `https://api.giphy.com/v1/gifs/${titlelink.link}?api_key=ud0TA4TXBTiRM4P5aqjg7g9tj8oPMder`
+        `https://api.giphy.com/v1/gifs/${titlelink.link}?api_key=${API_KEY_GIF}`
       )
       .then(function (response) {
         const gifData = response.data;
         setGifData(gifData);
         setLoading(false);
-        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`https://ghibliapi.herokuapp.com/films`)
+      .then(function (response) {
+        const film = response.data;
+        setfilmData(film);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  }, []);
+  console.log(filmsData);
+  const { summary, director, producer, yearOfRelease } = useMemo(() => {
+    let summary = "";
+    let director = "";
+    let producer = "";
+    let yearOfRelease = "";
+
+    if (filmsData) {
+      summary = `${filmsData[`${titleid.id}`].description}`;
+      director = `${filmsData[`${titleid.id}`].director}`;
+      producer = `${filmsData[`${titleid.id}`].producer}`;
+      yearOfRelease = `${filmsData[`${titleid.id}`].release_date}`;
+    }
+
+    return {
+      summary,
+      director,
+      producer,
+      yearOfRelease,
+    };
+  }, [filmsData]);
 
   const { gifImage } = useMemo(() => {
     let gifImage = "";
@@ -54,9 +85,19 @@ function Films() {
   return (
     <>
       <Header />
-      <main>
-        <p>Basic Info</p>
-        <img src={gifImage} />
+      <main className="filmPage">
+        <div className="filmInfo">
+          <h1>
+            {title}-{yearOfRelease}
+          </h1>
+          <img src={gifImage} />
+        </div>
+        <div className="filmInfo">
+          <h2>Director: {director}</h2>
+          <h2>Producer: {producer}</h2>
+          <h2>Summary</h2>
+          <p>{summary}</p>
+        </div>
       </main>
     </>
   );
