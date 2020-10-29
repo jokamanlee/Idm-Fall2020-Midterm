@@ -47,7 +47,7 @@ function Films() {
         console.log(error);
       });
   }, []);
-  console.log(filmsData);
+
   const { summary, director, producer, yearOfRelease } = useMemo(() => {
     let summary = "";
     let director = "";
@@ -73,14 +73,14 @@ function Films() {
     let noGifAvalible = "";
 
     if (titleid.id === "9" || titleid.id === "18") {
-      noGifAvalible = "*Not this film's related gif";
+      noGifAvalible = "*GIF NOT RELATED TO FILM*";
     }
 
     return {
       noGifAvalible,
     };
   }, [titleid]);
-  console.log(noGifAvalible);
+
   const { gifImage } = useMemo(() => {
     let gifImage = "";
 
@@ -96,22 +96,29 @@ function Films() {
   }
   return (
     <>
-      <Header />
-      <main className="filmPage">
-        <div className="filmInfo">
-          <h1>
-            {title}-{yearOfRelease}
-          </h1>
-          <img src={gifImage} />
-          <div className="gif">{noGifAvalible}</div>
-        </div>
-        <div className="filmInfo">
-          <h2>Director: {director}</h2>
-          <h2>Producer: {producer}</h2>
-          <h2>Summary</h2>
-          <p>{summary}</p>
-        </div>
-      </main>
+      <div className="page">
+        <Header />
+        <main className="filmPage">
+          <div className="filmInfo">
+            <h1 className="labelTitle">
+              {title}-{yearOfRelease}
+            </h1>
+            <img src={gifImage} />
+            <div className="gif">{noGifAvalible}</div>
+            <h2 className="labels">Director:</h2>
+            <p className="text">{director}</p>
+            <h2 className="labels">Producer:</h2>
+            <p className="text">{producer}</p>
+            <h2 className="labels">Summary</h2>
+            <p className="text">
+              {summary}
+              <p className="fillInSpace">
+                fdsjlkfjlsdkjfldjflsjdlfjdsjaflfjdsflsajfkljlksdjfljdslfjlkdjakljflajljflkdajlfdsjlfjlsj
+              </p>
+            </p>
+          </div>
+        </main>
+      </div>
     </>
   );
 }

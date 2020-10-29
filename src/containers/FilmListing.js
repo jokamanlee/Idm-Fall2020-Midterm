@@ -31,7 +31,7 @@ function FilmListing() {
     <>
       <Header />
       <main>
-        <div>
+        <div className="container">
           {filmsData.map((films, index) => (
             <FilmNames key={index} filmInfo={films} />
           ))}
