@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+
 import axios from "axios";
 
 import { useParams } from "react-router-dom";
@@ -13,9 +14,7 @@ function Films() {
   const [isLoading, setLoading] = useState(true);
   const [gifData, setGifData] = useState(null);
   const [filmsData, setfilmData] = useState();
-
   let { title } = useParams();
-
   const titlelink = DataOffsets.find((film) => film.title === title);
   const titleid = DataOffsets.find((film) => film.title === title);
 
@@ -110,12 +109,7 @@ function Films() {
             <h2 className="labels">Producer:</h2>
             <p className="text">{producer}</p>
             <h2 className="labels">Summary</h2>
-            <p className="text">
-              {summary}
-              <p className="fillInSpace">
-                fdsjlkfjlsdkjfldjflsjdlfjdsjaflfjdsflsajfkljlksdjfljdslfjlkdjakljflajljflkdajlfdsjlfjlsj
-              </p>
-            </p>
+            <p className="text">{summary}</p>
           </div>
         </main>
       </div>
